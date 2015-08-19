@@ -1,0 +1,31 @@
+{
+  "name": "allyse/allyse",
+  "type": "library",
+  "description": "Allyse - Klein.php based micro MVC framework.",
+  "keywords": ["framework", "mvc", "debugging", "templating", "database", "router"],
+  "homepage": "https://github.com/allyse",
+  "license": ["BSD-3-Clause", "GPL-2.0", "GPL-3.0"],
+  "authors": [
+    {
+      "name": "Honza Hommer",
+      "email": "iamhonzahommer@gmail.com",
+      "role": "Developer"
+    }
+  ],
+  "require": {
+    "php": ">= 5.5",
+    "klein/klein": "^2.1",
+    "tracy/tracy": "^2.3",
+    "smarty/smarty": "^3.1",
+    "dibi/dibi": "^2.3",
+    "tedivm/stash": "^0.13.1",
+    "nette/utils": "^2.3",
+    "soundintheory/php-sql-parser": "^1.0"
+  },
+  "minimum-stability": "dev",
+  "extra": {
+    "branch-alias": {
+      "dev-master": "1.0-dev"
+    }
+  }
+}

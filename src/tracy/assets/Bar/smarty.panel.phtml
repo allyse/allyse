@@ -1,0 +1,81 @@
+<?php
+
+$_template_data = Smarty_Internal_Debug::$template_data;
+$_assigned_vars = Smarty_Internal_Debug::get_debug_vars($smarty)->tpl_vars;
+
+?>
+<style class="tracy-debug">
+    #tracy-debug .tracy-SmartyPanel h2 {
+        font: 11pt/1.5 sans-serif;
+        margin: 0;
+        padding: 2px 8px;
+        background: #3484d2;
+        color: white;
+    }
+
+    #tracy-debug .tracy-SmartyPanel table {
+        min-width: 350px;
+    }
+
+    #tracy-debug .tracy-SmartyPanel small {
+        font-size: 10px;
+    }
+</style>
+
+<div class="tracy-inner tracy-SmartyPanel">
+    <h1>Smarty <?php echo $smarty::SMARTY_VERSION; ?></h1>
+
+    <?php if (count($_template_data)) { ?>
+        <h2>Included templates & config files</h2>
+        <table>
+            <colgroup>
+                <col style="width: 50%;">
+                <col>
+            </colgroup>
+
+            <tbody>
+            <?php
+            foreach ($_template_data as $template) {
+                $template = reset($template);
+
+                echo '<tr>';
+                echo '<td colspan="3"><b>' . $template['name'] . '</b></td>';
+                echo '</tr>';
+
+                echo '<tr style="font-size: 12px;">';
+                echo '<td>compile time ' . number_format((1000 * $template['compile_time']), 2) . 'ms</td>';
+                echo '<td>render time ' . number_format((1000 * $template['render_time']), 2) . 'ms</td>';
+                echo '</tr>';
+            }
+            ?>
+            </tbody>
+        </table>
+
+        <br>
+    <?php } ?>
+
+    <?php if (count($_assigned_vars)) { ?>
+        <h2>Assigned template variables</h2>
+        <table>
+            <colgroup>
+                <col style="width: 33%;">
+                <col>
+            </colgroup>
+
+            <tbody>
+            <?php
+            foreach ($_assigned_vars as $key => $var) {
+                echo '<tr>';
+                echo '<td><b>' . $key . '</b><br><small>' . $var['scope'] . '</small></td>';
+                echo '<td>';
+                echo '<pre>';
+                var_dump($var['value']);
+                echo '</pre>';
+                echo '</td>';
+                echo '</tr>';
+            }
+            ?>
+            </tbody>
+        </table>
+    <?php } ?>
+</div>
